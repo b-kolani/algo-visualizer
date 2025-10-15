@@ -28,7 +28,7 @@ maxInput.onchange = () => {
     generateArray(size);
 }
 
-function generateArray(size = 50) {
+function generateArray(size = 20) {
     array = Array.from({ length: size }, () => Math.floor(Math.random() * (max - min + 1)) + min);
     displayArray();
 }

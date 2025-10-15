@@ -1,10 +1,10 @@
 const increaseSpeed = document.getElementById("increaseSpeed");
 const decreaseSpeed = document.getElementById("decreaseSpeed");
+const containerHeight = 300;
 
 async function bubbleSort(arr, speed) {
-    const maxHeight = Math.max(...arr);
-    const containerHeight = 300;
     const bars = document.querySelectorAll(".bar");
+    const maxHeight = Math.max(...arr);
     let swapped = 0;
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr.length - i - 1; j++) {
@@ -29,7 +29,34 @@ async function bubbleSort(arr, speed) {
     }
 }
 
-async function selectionSort(arr, speed) {}
+async function selectionSort(arr, speed) {
+    const bars = document.querySelectorAll(".bar");
+    const maxHeight = Math.max(...arr);
+    for (let i = 0; i < arr.length; i++) {
+        let minIndex = i;
+        bars[minIndex].style.background = "orange";
+        for (let j = i + 1; j < arr.length; j++) {
+            increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
+            decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
+            bars[j].style.background = "red";
+            await new Promise(r => setTimeout(r, speed));
+            if (arr[j] < arr[minIndex]) {
+                bars[minIndex].style.background = "cyan";
+                minIndex = j;
+                bars[minIndex].style.background = "orange";
+            } else
+                bars[j].style.background = "cyan";
+        }
+        if (minIndex != i) {
+            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+            bars[minIndex].previousElementSibling.innerHTML = arr[minIndex];
+            bars[minIndex].style.height = `${arr[minIndex] < 0 ? 0 : ((arr[minIndex] / maxHeight) * containerHeight)}px`
+            bars[i].previousElementSibling.innerHTML = arr[i];
+            bars[i].style.height = `${arr[i] < 0 ? 0 : ((arr[i] / maxHeight) * containerHeight)}px`;
+        }
+        bars[i].style.background = "cyan";
+    }
+}
 
 async function insertionSort(arr, speed) {}
 

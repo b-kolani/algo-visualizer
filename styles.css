@@ -1,0 +1,30 @@
+body {
+    background-color: #121212;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+}
+
+#controls {
+    margin: 20px;
+}
+
+#visualizer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 400px;
+    margin-top: 40px;
+}
+
+.bar {
+    width: 20px;
+    margin: 0 2px;
+    background: cyan;
+    transition: height 0.2s, background 0.2s;
+}
+
+#arrSize, #arrRange {
+    margin-top: 20px;
+}
+

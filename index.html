@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Algo Visualizer</title>
+</head>
+<body>
+    <header>
+        <h1>
+            Aglo Visualizer
+        </h1>
+    </header>
+    <section id="controls">
+        <select id="algoSelect">
+            <option value="insertion">Insertion Sort</option>
+            <option value="bubble">Bubble Sort</option>
+            <option value="merge">Merge Sort</option>
+            <option value="quick">Quick Sort</option>
+            <option value="selection">Selection Sort</option>
+        </select>
+        <button id="startBtn">Start</button>
+        <button id="resetBtn">Reset</button>
+        <button id="increaseSpeed">Increase Animation Speed</button>
+        <button id="decreaseSpeed">Decrease Animation Speed</button>
+        <section id="arrSize">
+            Size:
+            <input type="number" id="size" placeholder="size">
+        </section>
+        <section id="arrRange">
+            Range: 
+            <input id="min" type="number" placeholder="min"/>
+            <input id="max" type="number" placeholder="max"/>
+        </section>
+    </section>
+    <section id="visualizer">
+    </section>
+    <script src="algorithms.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

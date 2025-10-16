@@ -7,6 +7,8 @@ async function bubbleSort(arr, speed) {
     const maxHeight = Math.max(...arr);
     let swapped = 0;
     for (let i = 0; i < arr.length; i++) {
+        decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
+        increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
         for (let j = 0; j < arr.length - i - 1; j++) {
             decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
             increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
@@ -25,7 +27,7 @@ async function bubbleSort(arr, speed) {
             bars[j + 1].style.background = "cyan";
         }
         if (!swapped)
-            break ;
+            break;
     }
 }
 
@@ -35,11 +37,13 @@ async function selectionSort(arr, speed) {
     for (let i = 0; i < arr.length; i++) {
         let minIndex = i;
         bars[minIndex].style.background = "orange";
+        decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
+        increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
         for (let j = i + 1; j < arr.length; j++) {
-            increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
-            decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
             bars[j].style.background = "red";
             await new Promise(r => setTimeout(r, speed));
+            decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
+            increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
             if (arr[j] < arr[minIndex]) {
                 bars[minIndex].style.background = "cyan";
                 minIndex = j;
@@ -58,8 +62,41 @@ async function selectionSort(arr, speed) {
     }
 }
 
-async function insertionSort(arr, speed) {}
+async function insertionSort(arr, speed) {
+    const bars = document.querySelectorAll(".bar");
+    const maxHeight = Math.max(...arr);
+    let insertIndex;
+    let currentValue;
+    for (let i = 1; i < arr.length; i++) {
+        insertIndex = i;
+        currentValue = arr[i];
+        decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
+        increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
+        bars[i].style.background = "red";
+        await new Promise(r => setTimeout(r, speed));
+        for (let j = i - 1; j >= 0; j--) {
+            bars[j].style.background = "red";
+            decreaseSpeed.onclick = () => (speed < 1000 && (speed += 100));
+            increaseSpeed.onclick = () => (speed >= 100 && (speed -= 100));
+            await new Promise(r => setTimeout(r, speed));
+            if (arr[j] > currentValue) {
+                insertIndex = j;
+                arr[j + 1] = arr[j];
+                bars[j + 1].style.height = `${(arr[j] / maxHeight) * containerHeight}px`;
+                bars[j + 1].previousElementSibling.innerHTML = arr[j];
+            } else
+                break;
+            bars[j].style.background = "cyan";
+        }
+        if (insertIndex != i) {
+            arr[insertIndex] = currentValue;
+            bars[insertIndex].style.height = `${(currentValue / maxHeight) * containerHeight}px`;
+            bars[insertIndex].previousElementSibling.innerHTML = currentValue;
+        }
+        for (k = 0; k <= i; k++) bars[k].style.background = "cyan";
+    }
+}
 
-async function quickSort(arr, speed) {}
+async function quickSort(arr, speed) { }
 
-async function mergeSort(arr, speed) {}
+async function mergeSort(arr, speed) { }

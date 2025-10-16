@@ -6,8 +6,6 @@ const sizeInput = document.getElementById("size");
 const minInput = document.getElementById("min");
 const maxInput = document.getElementById("max");
 
-
-
 let array = [];
 let speed = 1000;
 let min = 0;
@@ -62,7 +60,7 @@ resetBtn.onclick = () => {
     min = 0;
     max = 100;
     generateArray();
-} 
+}
 
 startBtn.onclick = () => {
     const value = algoSelect.value;
